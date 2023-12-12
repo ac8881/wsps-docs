@@ -87,8 +87,8 @@ jobs:
         with:
           name: docs
 
-      - name: Unzip artifact
-        run: unzip -O UTF-8 -qq ${{ env.ARTIFACT }} -d dir
+#      - name: Unzip artifact
+#        run: unzip -O UTF-8 -qq ${{ env.ARTIFACT }} -d dir
 
       - name: Setup Pages
         uses: actions/configure-pages@v2
