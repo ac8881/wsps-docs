@@ -1,4 +1,4 @@
 ```html
 流水线生成文档地址：
-<a href=""></a>
+<a href="https://ac8881.github.io/wsps-docs">https://ac8881.github.io/wsps-docs</a>
 ```
