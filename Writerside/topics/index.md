@@ -5,7 +5,7 @@
 ## 前提条件
 
 确保你有三个服务器（或虚拟机），我们将称它们为 `node1`、`node2` 和 `node3`。假设它们的 IP
-地址分别为 `192.168.1.1`，`192.168.1.2` 和 `192.168.1.3`。
+地址分别为 `10.100.18.56`，`10.100.18.73` 和 `10.100.18.167`。
 
 ## 第一步：在每个节点上安装 etcd
 
@@ -41,11 +41,11 @@ etcd --version
 ```yaml
 name: 'node1'
 data-dir: '/var/lib/etcd'
-initial-advertise-peer-urls: 'http://192.168.1.1:2380'
-listen-peer-urls: 'http://192.168.1.1:2380'
-advertise-client-urls: 'http://192.168.1.1:2379'
-listen-client-urls: 'http://192.168.1.1:2379,http://127.0.0.1:2379'
-initial-cluster: 'node1=http://192.168.1.1:2380,node2=http://192.168.1.2:2380,node3=http://192.168.1.3:2380'
+initial-advertise-peer-urls: 'http://10.100.18.56:2380'
+listen-peer-urls: 'http://10.100.18.56:2380'
+advertise-client-urls: 'http://10.100.18.56:2379'
+listen-client-urls: 'http://10.100.18.56:2379,http://127.0.0.1:2379'
+initial-cluster: 'node1=http://10.100.18.56:2380,node2=http://10.100.18.73:2380,node3=http://10.100.18.167:2380'
 initial-cluster-state: 'new'
 initial-cluster-token: 'etcd-cluster'
 ```
@@ -55,11 +55,11 @@ initial-cluster-token: 'etcd-cluster'
 ```yaml
 name: 'node2'
 data-dir: '/var/lib/etcd'
-initial-advertise-peer-urls: 'http://192.168.1.2:2380'
-listen-peer-urls: 'http://192.168.1.2:2380'
-advertise-client-urls: 'http://192.168.1.2:2379'
-listen-client-urls: 'http://192.168.1.2:2379,http://127.0.0.1:2379'
-initial-cluster: 'node1=http://192.168.1.1:2380,node2=http://192.168.1.2:2380,node3=http://192.168.1.3:2380'
+initial-advertise-peer-urls: 'http://10.100.18.73:2380'
+listen-peer-urls: 'http://10.100.18.73:2380'
+advertise-client-urls: 'http://10.100.18.73:2379'
+listen-client-urls: 'http://10.100.18.73:2379,http://127.0.0.1:2379'
+initial-cluster: 'node1=http://10.100.18.56:2380,node2=http://10.100.18.73:2380,node3=http://10.100.18.167:2380'
 initial-cluster-state: 'new'
 initial-cluster-token: 'etcd-cluster'
 ```
@@ -69,11 +69,11 @@ initial-cluster-token: 'etcd-cluster'
 ```yaml
 name: 'node3'
 data-dir: '/var/lib/etcd'
-initial-advertise-peer-urls: 'http://192.168.1.3:2380'
-listen-peer-urls: 'http://192.168.1.3:2380'
-advertise-client-urls: 'http://192.168.1.3:2379'
-listen-client-urls: 'http://192.168.1.3:2379,http://127.0.0.1:2379'
-initial-cluster: 'node1=http://192.168.1.1:2380,node2=http://192.168.1.2:2380,node3=http://192.168.1.3:2380'
+initial-advertise-peer-urls: 'http://10.100.18.167:2380'
+listen-peer-urls: 'http://10.100.18.167:2380'
+advertise-client-urls: 'http://10.100.18.167:2379'
+listen-client-urls: 'http://10.100.18.167:2379,http://127.0.0.1:2379'
+initial-cluster: 'node1=http://10.100.18.56:2380,node2=http://10.100.18.73:2380,node3=http://10.100.18.167:2380'
 initial-cluster-state: 'new'
 initial-cluster-token: 'etcd-cluster'
 ```
@@ -121,7 +121,7 @@ sudo systemctl enable etcd
 ## 第四步：验证 etcd 集群 {id="etcd_3"}
 
 ```Bash
-etcdctl --endpoints=http://192.168.1.1:2379,http://192.168.1.2:2379,http://192.168.1.3:2379 endpoint health
+etcdctl --endpoints=http://10.100.18.56:2379,http://10.100.18.73:2379,http://10.100.18.167:2379 endpoint health
 ```
 
 将正常看到每个节点的健康状态
